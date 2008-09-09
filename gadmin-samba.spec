@@ -10,6 +10,7 @@ Source1:	%{name}.pam
 Patch0:		gsambad-fix-netlogon-script.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	ImageMagick
+BuildRequires:	desktop-file-utils
 Requires:	samba-server >= 3.0
 Requires:	openssl
 Requires:	usermode-consoleonly
