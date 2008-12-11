@@ -9,7 +9,7 @@ Source0:	http://mange.dynalias.org/linux/gsambad/%{name}-%{version}.tar.gz
 Source1:	%{name}.pam
 Patch0:		gsambad-fix-netlogon-script.patch
 BuildRequires:	gtk+2-devel
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildRequires:	desktop-file-utils
 Requires:	samba-server >= 3.0
 Requires:	openssl
