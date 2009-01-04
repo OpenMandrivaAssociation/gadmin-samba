@@ -7,7 +7,7 @@ Group:		System/Configuration/Networking
 URL:		http://www.gadmintools.org/
 Source0:	http://mange.dynalias.org/linux/gsambad/%{name}-%{version}.tar.gz
 Source1:	%{name}.pam
-Patch0:		gsambad-fix-netlogon-script.patch
+Patch0:		gadmin-samba-0.2.7-fix_netlogon_script.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	imagemagick
 BuildRequires:	desktop-file-utils
