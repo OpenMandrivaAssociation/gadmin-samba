@@ -1,7 +1,7 @@
 Summary:	A GTK+ administation tool for the SAMBA server
 Name:		gadmin-samba
 Version:	0.2.7
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv3+
 Group:		System/Configuration/Networking
 URL:		http://www.gadmintools.org/
@@ -19,16 +19,14 @@ Provides:	gsambad
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
-GSAMBAD is a fast and easy to use GTK+ administration tool for the
-SAMBA server.
+Gadmin-Samba is a fast and easy to use GTK+ administration tool for the
+Samba server.
 
 %prep
-
 %setup -q
 %patch0 
 
 %build
-
 %configure2_5x
 
 perl -pi -e 's|^#define SAMBA_USER .*|#define SAMBA_USER \"root\"|g' config.h
@@ -46,32 +44,31 @@ install -d %{buildroot}%{_sysconfdir}/%{name}
 install -d %{buildroot}%{_sysconfdir}/pam.d/
 install -d %{buildroot}%{_sysconfdir}/security/console.apps
 
-
 install -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/pam.d/%{name}
 install -m 644 etc/security/console.apps/%{name} %{buildroot}%{_sysconfdir}/security/console.apps/%{name}
 
 ## locales
-%find_lang %name
+%find_lang %{name}
 
 # Mandriva Icons
-install -d %{buildroot}%{_iconsdir}
-install -d %{buildroot}%{_miconsdir}
-install -d %{buildroot}%{_liconsdir}
-convert -geometry 48x48 pixmaps/%{name}.png %{buildroot}%{_liconsdir}/%{name}.png
-convert -geometry 32x32 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/%{name}.png
-convert -geometry 16x16 pixmaps/%{name}.png %{buildroot}%{_miconsdir}/%{name}.png
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
+convert -geometry 48x48 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/48x48/%{name}.png
+convert -geometry 32x32 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/32x32/%{name}.png
+convert -geometry 16x16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/%{name}.png
 
 mkdir -p %{buildroot}%{_datadir}/applications
+sed -i -e 's,%{name}.png,%{name},g' desktop/%{name}.desktop
+sed -i -e 's,GADMIN-SAMBA,Gadmin-Samba,g' desktop/%{name}.desktop
 mv desktop/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
-perl -pi -e 's,%{name}.png,%{name},g' %{buildroot}%{_datadir}/applications/*
 desktop-file-install --vendor="" \
     --remove-category="Application" \
     --add-category="Settings;Network;GTK;" \
     --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 # Prepare usermode entry
+mkdir -p %{buildroot}%{_bindir}
 mv %{buildroot}%{_sbindir}/%{name} %{buildroot}%{_sbindir}/%{name}.real
-ln -s %{_bindir}/consolehelper %{buildroot}%{_sbindir}/%{name}
+ln -s %{_bindir}/consolehelper %{buildroot}%{_bindir}/%{name}
 
 # Scripts
 install -d %{buildroot}%{_bindir}
@@ -108,7 +105,7 @@ rm -rf %{buildroot}
 %config(noreplace) %{_sysconfdir}/pam.d/%{name}
 %config(noreplace) %{_sysconfdir}/security/console.apps/%{name}
 %dir %{_sysconfdir}/%{name}
-%{_sbindir}/%{name}
+%{_bindir}/%{name}
 %{_sbindir}/%{name}.real
 %{_datadir}/pixmaps/*.png
 %{_datadir}/pixmaps/%{name}/*.png
