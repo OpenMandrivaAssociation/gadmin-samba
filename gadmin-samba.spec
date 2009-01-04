@@ -1,3 +1,7 @@
+# if I fix the string literal errors according to the wiki Problems
+# page, it crashes on startup - AdamW 2009/01
+%define Werror_cflags %nil
+
 Summary:	A GTK+ administation tool for the SAMBA server
 Name:		gadmin-samba
 Version:	0.2.7
@@ -24,7 +28,7 @@ Samba server.
 
 %prep
 %setup -q
-%patch0 
+%patch0 -p1 -b .fix_netlogon
 
 %build
 %configure2_5x
