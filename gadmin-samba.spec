@@ -114,7 +114,5 @@ rm -rf %{buildroot}
 %{_datadir}/pixmaps/*.png
 %{_datadir}/pixmaps/%{name}/*.png
 %{_datadir}/applications/*
-%{_iconsdir}/%{name}.png
-%{_miconsdir}/%{name}.png
-%{_liconsdir}/%{name}.png
+%{_iconsdir}/hicolor/*/%{name}.png
 %{_bindir}/*
