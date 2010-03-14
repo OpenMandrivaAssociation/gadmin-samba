@@ -4,12 +4,12 @@
 
 Summary:	A GTK+ administation tool for the SAMBA server
 Name:		gadmin-samba
-Version:	0.2.8
+Version:	0.2.9
 Release:	%mkrel 1
 License:	GPLv3+
 Group:		System/Configuration/Networking
 URL:		http://www.gadmintools.org/
-Source0:	http://mange.dynalias.org/linux/gsambad/%{name}-%{version}.tar.gz
+Source0:	http://mange.dynalias.org/linux/gadmin-samba/%{name}-%{version}.tar.gz
 Source1:	%{name}.pam
 Patch0:		gadmin-samba-0.2.7-fix_netlogon_script.patch
 BuildRequires:	gtk+2-devel
