@@ -4,14 +4,14 @@
 
 Summary:	A GTK+ administation tool for the SAMBA server
 Name:		gadmin-samba
-Version:	0.2.9
+Version:	0.3.0
 Release:	%mkrel 1
 License:	GPLv3+
 Group:		System/Configuration/Networking
 URL:		http://www.gadmintools.org/
 Source0:	http://mange.dynalias.org/linux/gadmin-samba/%{name}-%{version}.tar.gz
 Source1:	%{name}.pam
-Patch0:		gadmin-samba-0.2.7-fix_netlogon_script.patch
+Patch0:		gadmin-samba-0.3.0-fix_netlogon_script.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	imagemagick
 BuildRequires:	desktop-file-utils
@@ -40,7 +40,7 @@ perl -pi -e 's|^#define SAMBA_USER .*|#define SAMBA_USER \"root\"|g' config.h
 %install
 rm -rf %{buildroot}
 
-%makeinstall INSTALL_USER=`id -un` INSTALL_GROUP=`id -gn`
+%makeinstall_std INSTALL_USER=`id -un` INSTALL_GROUP=`id -gn`
 
 install -d %{buildroot}%{_sysconfdir}/%{name}
 
@@ -63,7 +63,7 @@ convert -geometry 16x16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x
 mkdir -p %{buildroot}%{_datadir}/applications
 sed -i -e 's,%{name}.png,%{name},g' desktop/%{name}.desktop
 sed -i -e 's,GADMIN-SAMBA,Gadmin-Samba,g' desktop/%{name}.desktop
-mv desktop/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
+install -m644 desktop/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 desktop-file-install --vendor="" \
     --remove-category="Application" \
     --add-category="Settings;Network;GTK;" \
@@ -92,13 +92,11 @@ rm -rf %{buildroot}%{_datadir}/doc/%{name}
 %if %mdkversion < 200900
 %update_menus
 %endif
-mv /bin/scripts/example.bat /home/netlogon/example.bat
 
 %postun
 %if %mdkversion < 200900
 %clean_menus
 %endif
-rm -rf /home/netlogon/example.bat
 
 %clean
 rm -rf %{buildroot}
@@ -109,10 +107,10 @@ rm -rf %{buildroot}
 %config(noreplace) %{_sysconfdir}/pam.d/%{name}
 %config(noreplace) %{_sysconfdir}/security/console.apps/%{name}
 %dir %{_sysconfdir}/%{name}
-%{_bindir}/%{name}
+%{_bindir}/*
 %{_sbindir}/%{name}.real
 %{_datadir}/pixmaps/*.png
 %{_datadir}/pixmaps/%{name}/*.png
 %{_datadir}/applications/*
 %{_iconsdir}/hicolor/*/%{name}.png
-%{_bindir}/*
+%{_localstatedir}/lib/samba/netlogon/example.bat
