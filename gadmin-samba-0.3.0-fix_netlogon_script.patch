@@ -1,0 +1,35 @@
+--- gadmin-samba-0.3.0/Makefile.in.fix_netlogon	2010-09-09 17:08:46.000000000 +0200
++++ gadmin-samba-0.3.0/Makefile.in	2010-09-10 15:56:28.000000000 +0200
+@@ -752,22 +752,22 @@
+ 	   $(mkinstalldirs) $(DESTDIR)$(sysconfdir)/gadmin-samba; \
+ 	fi;
+ 	if test -d $(DESTDIR)$(bindir) && test ! -f $(DESTDIR)$(bindir)/gadmin-samba-pdf; then \
+-	   cp scripts/gadmin-samba-pdf $(bindir)/; \
++	   cp scripts/gadmin-samba-pdf $(DESTDIR)$(bindir)/; \
+ 	fi;
+ 	@echo Installing example logon script to static /var/lib/samba/netlogon.
+-	if test ! -d /var/lib/samba/netlogon; then \
+-	   install -d -m 0755 /var/lib/samba/netlogon; \
++	if test ! -d $(DESTDIR)/var/lib/samba/netlogon; then \
++	   install -d -m 0755 $(DESTDIR)/var/lib/samba/netlogon; \
+ 	fi;
+-	if test -d /var/lib/samba/netlogon && test ! -f /var/lib/samba/netlogon/example.bat; then \
+-	   cp scripts/example.bat /var/lib/samba/netlogon/; \
+-	   chmod a+r /var/lib/samba/netlogon/example.bat; \
++	if test -d $(DESTDIR)/var/lib/samba/netlogon && test ! -f $(DESTDIR)/var/lib/samba/netlogon/example.bat; then \
++	   cp scripts/example.bat $(DESTDIR)/var/lib/samba/netlogon/; \
++	   chmod a+r $(DESTDIR)/var/lib/samba/netlogon/example.bat; \
+ 	fi;
+ 	@echo Creating the profiles directory /var/lib/samba/profiles.
+-	if test ! -d /var/lib/samba/profiles; then \
+-	   install -d -m 1755 /var/lib/samba/profiles; \
++	if test ! -d $(DESTDIR)/var/lib/samba/profiles; then \
++	   install -d -m 1755 $(DESTDIR)/var/lib/samba/profiles; \
+ 	fi;
+-	if test ! -d /var/lib/samba/pdf-documents; then \
+-	   install -d -m 1755 /var/lib/samba/pdf-documents; \
++	if test ! -d $(DESTDIR)/var/lib/samba/pdf-documents; then \
++	   install -d -m 1755 $(DESTDIR)/var/lib/samba/pdf-documents; \
+ 	fi;
+ 	@echo ""
+ 	@echo "Start GADMIN-SAMBA by typing gadmin-samba in a terminal"
