@@ -4,7 +4,7 @@
 
 Summary:	A GTK+ administation tool for the SAMBA server
 Name:		gadmin-samba
-Version:	0.3.2
+Version:	0.3.0
 Release:	%mkrel 1
 License:	GPLv3+
 Group:		System/Configuration/Networking
@@ -114,3 +114,42 @@ rm -rf %{buildroot}
 %{_datadir}/applications/*
 %{_iconsdir}/hicolor/*/%{name}.png
 %{_localstatedir}/lib/samba/netlogon/example.bat
+
+
+%changelog
+* Fri Sep 10 2010 Funda Wang <fwang@mandriva.org> 0.3.0-1mdv2011.0
++ Revision: 577109
+- New version 0.3.0
+
+* Sun Mar 14 2010 Funda Wang <fwang@mandriva.org> 0.2.9-1mdv2010.1
++ Revision: 518882
+- new version 0.2.9
+
+* Thu Jan 07 2010 Emmanuel Andry <eandry@mandriva.org> 0.2.8-1mdv2010.1
++ Revision: 487288
+- New version 0.2.8
+
+* Fri Sep 11 2009 Thierry Vignaud <tv@mandriva.org> 0.2.7-3mdv2010.0
++ Revision: 437644
+- rebuild
+
+* Sun Jan 04 2009 Adam Williamson <awilliamson@mandriva.org> 0.2.7-2mdv2009.1
++ Revision: 324171
+- fix icon locations
+- fix patch application for re-diffed patch
+- rediff and improve name of fix_netlogon_script.patch
+- install consolehelper link to /usr/bin not /usr/sbin, so it works right
+- don't use ALL CAPS in menu entry
+- fd.o icons
+- clean description a bit
+- new license policy
+- disable Werror (if I try and fix it, it crashes on startup)
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - lowercase ImageMagick
+
+* Tue Sep 09 2008 Emmanuel Andry <eandry@mandriva.org> 0.2.7-1mdv2009.0
++ Revision: 283095
+- import gadmin-samba
+
+
