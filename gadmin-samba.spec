@@ -5,7 +5,7 @@
 Summary:	A GTK+ administation tool for the SAMBA server
 Name:		gadmin-samba
 Version:	0.3.0
-Release:	%mkrel 1
+Release:	2
 License:	GPLv3+
 Group:		System/Configuration/Networking
 URL:		http://www.gadmintools.org/
@@ -88,15 +88,7 @@ _EOF_
 
 rm -rf %{buildroot}%{_datadir}/doc/%{name}
 
-%post
-%if %mdkversion < 200900
-%update_menus
-%endif
 
-%postun
-%if %mdkversion < 200900
-%clean_menus
-%endif
 
 %clean
 rm -rf %{buildroot}
