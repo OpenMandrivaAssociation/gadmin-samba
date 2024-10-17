@@ -8,7 +8,7 @@ Version:	0.3.0
 Release:	4
 License:	GPLv3+
 Group:		System/Configuration/Networking
-URL:		http://www.gadmintools.org/
+URL:		https://www.gadmintools.org/
 Source0:	http://mange.dynalias.org/linux/gadmin-samba/%{name}-%{version}.tar.gz
 Source1:	%{name}.pam
 Patch0:		gadmin-samba-0.3.0-fix_netlogon_script.patch
